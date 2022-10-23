@@ -1,5 +1,11 @@
 import discord
+import os
 import oldScript
+from dotenv import load_dotenv
+
+load_dotenv()
+
+KEY = os.getenv("DISCORD_KEY")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -18,4 +24,4 @@ async def on_message(message):
     if message.content.startswith('$plan'):
         await message.channel.send(oldScript.getPlan())
 
-client.run('MTAzMzgxNDA5MzM2NDIxOTk2NQ.GCp0p2.WYMWaA0LNZVK6DSumJG2TwL5DQVXu4HX9MkG7c')
+client.run(KEY)
