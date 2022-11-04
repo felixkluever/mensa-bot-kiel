@@ -30,8 +30,10 @@ def getPlan():
             menu = []
             for food in foodElements:
                 price = food.find_all("div", class_="menu_preis")
-                name = food.find_all("div", class_="menu_name")                
-                menu.append(MenuItem(name[0].text, price[0].text))
+                name = food.find_all("div", class_="menu_name")
+                name = name[0].text.split(")")                
+                name = ") ".join(str(s) for s in name)
+                menu.append(MenuItem(name, price[0].text))
             plan.append(Day(menu, date[0].text.split(" ")[2]))
     return plan
 

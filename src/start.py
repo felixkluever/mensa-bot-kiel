@@ -81,7 +81,7 @@ def printWeek():
         for item in day.menu:
             val = ""
             if (item == day.menu[-1]):
-                val = item.price + "\n\n⠀"
+                val = item.price + "\n\nㅤ"
             else:
                 val = item.price
             message.add_field(
