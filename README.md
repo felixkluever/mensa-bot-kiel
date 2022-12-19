@@ -17,7 +17,7 @@ Falls der bot selbst gehostet werden soll werden folgene Dinge benötigt:
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
 - [python-discord](https://discordpy.readthedocs.io/en/stable/intro.html#installing)
 - [beautifulsoup4](https://pypi.org/project/beautifulsoup4/)
-- [ein discord bot account](https://discord.com/login?redirect_to=%2Fdevelopers%2Fapplications)
+- [einen discord bot account](https://discord.com/login?redirect_to=%2Fdevelopers%2Fapplications)
 
 ### Anleitung
 
