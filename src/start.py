@@ -9,6 +9,8 @@ load_dotenv()
 
 KEY = os.getenv("DISCORD_KEY")
 
+GITHUB_LINK = "github: https://github.com/felixkluever/mensa-bot-kiel"
+
 def main():
 
     intents = discord.Intents.default()
@@ -54,7 +56,7 @@ def printDay(day: int):
         title= intToDay(day) + " " + plan[day].date,
         url="https://studentenwerk.sh/de/mensaplandruck?ort=1&mensa=5"
     )
-    message.set_footer(text="github: https://github.com/MrBanane119/mensa-bot-kiel")
+    message.set_footer(text=GITHUB_LINK)
 
     for item in plan[day].menu:
         message.add_field(
@@ -70,24 +72,32 @@ def printWeek():
         title="Plan für die aktuelle Woche",
         url="https://studentenwerk.sh/de/mensaplandruck?ort=1&mensa=5"
     )
-    message.set_footer(text="github: https://github.com/MrBanane119/mensa-bot-kiel")
+    message.set_footer(text=GITHUB_LINK)
 
-    for i, day in enumerate(plan):
-        message.add_field(
-            name= " - " + intToDay(i) + " - ",
-            value=day.date,
-            inline=False
-        )
-        for item in day.menu:
-            val = ""
-            if (item == day.menu[-1]):
-                val = item.price + "\n\nㅤ"
-            else:
-                val = item.price
+    #if plan.__len__() < 5: #future code to handle weeks with a holiday
+        
+    if plan.__len__() > 0:
+        for i, day in enumerate(plan):
             message.add_field(
-                name= item.name,
-                value= val
+                name= " - " + intToDay(i) + " - ",
+                value=day.date,
+                inline=False
             )
+            for item in day.menu:
+                val = ""
+                if (item == day.menu[-1]):
+                    val = item.price + "\n\nㅤ"
+                else:
+                    val = item.price
+                message.add_field(
+                    name= item.name,
+                    value= val
+                )
+    else:
+        message.add_field(
+            name= "Die Mensa hat diese Woche geschlossen",
+            value= " "
+        )
 
     return message
 
@@ -101,7 +111,7 @@ def printToday():
             url="https://studentenwerk.sh/de/mensaplandruck?ort=1&mensa=5",
             description="Die Schwentine Mensa ist am Wochenende geschlossen"
         )
-        message.set_footer(text="github: https://github.com/MrBanane119/mensa-bot-kiel")
+        message.set_footer(text=GITHUB_LINK)
         return message
 
 def intToDay(day:int) -> str:

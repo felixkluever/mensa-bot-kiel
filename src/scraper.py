@@ -21,7 +21,8 @@ def getPlan():
     page = requests.get("https://studentenwerk.sh/de/mensaplandruck?ort=1&mensa=5")
     website = BeautifulSoup(page.content, 'html.parser')
 
-    dayElements = website.find_all("div", class_="tag_headline")
+    # elemets that represent one day each
+    dayElements = website.find_all("div", class_="tag_headline") 
 
     for dayElement in dayElements:
         date = (dayElement.find_all("div", class_="element_1"))
